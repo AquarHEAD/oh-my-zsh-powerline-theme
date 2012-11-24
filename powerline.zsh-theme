@@ -107,8 +107,13 @@ function _prompt_indicator() {
   [ "$(uname)" = "Darwin" ] && echo '%(!.√.)' || echo '%(!.√.○)'
 }
 
+function _custom_username() {
+  [ -n $ZSH_USERNAME ] && echo $ZSH_USERNAME && return
+  echo %n
+}
+
 PROMPT='
-'%{$bg[green]%}%{$fg[black]%}' AquarHEAD L. '%{$reset_color%}%{$fg[green]%}%{$bg[blue]%}$'\u2b80'%{$reset_color%}%{$fg[white]%}%{$bg[blue]%}' '%~$'$(repo_prompt_info) '%{$reset_color%}%{$fg[blue]%}$'\u2b80 $(repo_prompt_status)\n%(?..%{$fg[red]%}%? ↵ )%{$fg_bold[white]%}$(_prompt_indicator) %{$reset_color%}'
+'%{$bg[green]%}%{$fg[black]%}' $(_custom_username) '%{$reset_color%}%{$fg[green]%}%{$bg[blue]%}$'\u2b80'%{$reset_color%}%{$fg[white]%}%{$bg[blue]%}' '%~$'$(repo_prompt_info) '%{$reset_color%}%{$fg[blue]%}$'\u2b80 $(repo_prompt_status)\n%(?..%{$fg[red]%}%? ↵ )%{$fg_bold[white]%}$(_prompt_indicator) %{$reset_color%}'
 
 # %{$PR_GREY%}($(rvm_prompt_info || rbenv_prompt_info)) add to below
 RPROMPT=$'%{$POWERLINE_COLOR_FG_WHITE%}\u2b82%{$reset_color%}%{$POWERLINE_COLOR_BG_WHITE%} %{$POWERLINE_COLOR_FG_GRAY%}%D{%X}%  \u2b82%{$POWERLINE_COLOR_BG_GRAY%}%{$POWERLINE_COLOR_FG_WHITE%} %D{%b %d}%{$reset_color%}'
