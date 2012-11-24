@@ -3,13 +3,21 @@ oh-my-zsh-powerline-theme
 
 oh-my-zsh Powerline style Theme (with updates from AquarHEAD)
 
+Preview
+------
+
+![Preview](http://share.aquarhead.me/zsh-powerline.png)
+
 Update
 ------
 
-1. add mecurial support
-2. change the prompt indicator: '±' for git, '☿' for hg, '' for normal dir on my mac
-3. modify some status indicator (but still not very good)
-4. allow you to set a custom username via $ZSH_USERNAME in your `~/.zshrc`
+1. Add mecurial support
+
+2. Change the prompt indicator: `±` for git, `☿` for hg, `` for normal dir on my mac
+
+3. Modify some status indicator (but still not very good)
+
+4. Allow you to set a custom username via `$ZSH_USERNAME` in your `~/.zshrc`
 
 
 Set Up
