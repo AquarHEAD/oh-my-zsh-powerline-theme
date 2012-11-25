@@ -120,6 +120,7 @@ PROMPT='
 # virtualenv support
 function _venv_info() {
   if [ $VIRTUAL_ENV ]; then
+    [ -z $(echo $(pwd) | grep "^${VIRTUAL_ENV:h}") ] && echo "%{$PR_RED%}!dev?" && return
     echo "%{$PR_CYAN%}|${VIRTUAL_ENV:t}|"
   else
     [ -h "dev/include/python2.7" ] && echo "%{$PR_RED%}|dev|"
