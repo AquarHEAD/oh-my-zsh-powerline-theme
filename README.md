@@ -33,6 +33,11 @@ Set Up
     ZSH_THEME="powerline"
     ```
 
+Known Problem
+------
+
+It seems if you activate a virtualenv, its default modification to the `PROMPT` will cause some problem, so disable it by setting `export VIRTUAL_ENV_DISABLE_PROMPT="true"` in your `~/.zshrc`
+
 Requirements
 ------------
 
