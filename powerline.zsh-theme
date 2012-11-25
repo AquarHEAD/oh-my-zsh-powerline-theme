@@ -115,5 +115,23 @@ function _custom_username() {
 PROMPT='
 '%{$bg[green]%}%{$fg[black]%}' $(_custom_username) '%{$reset_color%}%{$fg[green]%}%{$bg[blue]%}$'\u2b80'%{$reset_color%}%{$fg[white]%}%{$bg[blue]%}' '%~$'$(repo_prompt_info) '%{$reset_color%}%{$fg[blue]%}$'\u2b80 $(repo_prompt_status)\n%(?..%{$fg[red]%}%? ↵ )%{$fg_bold[white]%}$(_prompt_indicator) %{$reset_color%}'
 
-# %{$PR_GREY%}($(rvm_prompt_info || rbenv_prompt_info)) add to below
-RPROMPT=$'%{$POWERLINE_COLOR_FG_WHITE%}\u2b82%{$reset_color%}%{$POWERLINE_COLOR_BG_WHITE%} %{$POWERLINE_COLOR_FG_GRAY%}%D{%X}%  \u2b82%{$POWERLINE_COLOR_BG_GRAY%}%{$POWERLINE_COLOR_FG_WHITE%} %D{%b %d}%{$reset_color%}'
+# %{$PR_GREY%}($(rvm_prompt_info || rbenv_prompt_info)) for rvm and rbenv support
+
+# virtualenv support
+function _venv_info() {
+  if [ $VIRTUAL_ENV ]; then
+    echo "%{$PR_CYAN%}|${VIRTUAL_ENV:t}|"
+  else
+    [ -h "dev/include/python2.7" ] && echo "%{$PR_RED%}|dev|"
+  fi
+}
+
+function act() {
+  if [ ! $VIRTUAL_ENV ]; then
+    source "dev/bin/activate"
+  else
+    deactivate
+  fi
+}
+
+RPROMPT=$'$(_venv_info)%{$POWERLINE_COLOR_FG_WHITE%}\u2b82%{$reset_color%}%{$POWERLINE_COLOR_BG_WHITE%} %{$POWERLINE_COLOR_FG_GRAY%}%D{%X}%  \u2b82%{$POWERLINE_COLOR_BG_GRAY%}%{$POWERLINE_COLOR_FG_WHITE%} %D{%b %d}%{$reset_color%}'
