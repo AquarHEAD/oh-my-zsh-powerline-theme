@@ -57,9 +57,9 @@ function repo_prompt_status() {
     if $(echo "$INDEX" | grep '^?? ' &> /dev/null); then
       STATUS="$ZSH_THEME_REPO_PROMPT_UNTRACKED$STATUS"
     fi
-    if $(echo "$INDEX" | grep '^A  ' &> /dev/null); then
+    if $(echo "$INDEX" | grep '^A' &> /dev/null); then
       STATUS="$ZSH_THEME_REPO_PROMPT_ADDED$STATUS"
-    elif $(echo "$INDEX" | grep '^M  ' &> /dev/null); then
+    elif $(echo "$INDEX" | grep '^M' &> /dev/null); then
       STATUS="$ZSH_THEME_REPO_PROMPT_ADDED$STATUS"
     fi
     if $(echo "$INDEX" | grep '^ M ' &> /dev/null); then
@@ -115,15 +115,14 @@ function _custom_username() {
 PROMPT='
 '%{$bg[green]%}%{$fg[black]%}' $(_custom_username) '%{$reset_color%}%{$fg[green]%}%{$bg[blue]%}$'\u2b80'%{$reset_color%}%{$fg[white]%}%{$bg[blue]%}' '%~$'$(repo_prompt_info) '%{$reset_color%}%{$fg[blue]%}$'\u2b80 $(repo_prompt_status)\n%(?..%{$fg[red]%}%? ↵ )%{$fg_bold[white]%}$(_prompt_indicator) %{$reset_color%}'
 
-# %{$PR_GREY%}($(rvm_prompt_info || rbenv_prompt_info)) for rvm and rbenv support
+# rbenv_prompt_info for rvm and rbenv support
 
 # virtualenv support
 function _venv_info() {
   if [ $VIRTUAL_ENV ]; then
-    [ -z $(echo $(pwd) | grep "^${VIRTUAL_ENV:h}") ] && echo "%{$PR_RED%}!dev?" && return
-    echo "%{$PR_CYAN%}|${VIRTUAL_ENV:t}|"
+    [ $(echo $(pwd) | grep "^${VIRTUAL_ENV:h}") ] && echo "%{$PR_CYAN%}|${VIRTUAL_ENV:t}| %{$PR_GREY%}$(rvm_prompt_info)" && return
   else
-    [ -h "dev/include/python2.7" ] && echo "%{$PR_RED%}|dev|"
+    [ -h "dev/include/python2.7" ] && echo "%{$PR_RED%}|dev| %{$PR_GREY%}$(rvm_prompt_info)" && return
   fi
 }
 
