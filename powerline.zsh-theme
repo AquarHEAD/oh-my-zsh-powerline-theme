@@ -119,19 +119,7 @@ PROMPT='
 
 # virtualenv support
 function _venv_info() {
-  if [ $VIRTUAL_ENV ]; then
-    [ $(echo $(pwd) | grep "^${VIRTUAL_ENV:h}") ] && echo "%{$PR_CYAN%}|${VIRTUAL_ENV:t}| %{$PR_GREY%}$(rvm_prompt_info)" && return
-  else
-    [ -h "dev/include/python2.7" ] && echo "%{$PR_RED%}|dev| %{$PR_GREY%}$(rvm_prompt_info)" && return
-  fi
-}
-
-function act() {
-  if [ ! $VIRTUAL_ENV ]; then
-    source "dev/bin/activate"
-  else
-    deactivate
-  fi
+  echo "%{$PR_CYAN%}${VIRTUAL_ENV:t} | %{$PR_GREY%}$(rvm_prompt_info)"
 }
 
 RPROMPT=$'$(_venv_info)%{$POWERLINE_COLOR_FG_WHITE%}\u2b82%{$reset_color%}%{$POWERLINE_COLOR_BG_WHITE%} %{$POWERLINE_COLOR_FG_GRAY%}%D{%X}%  \u2b82%{$POWERLINE_COLOR_BG_GRAY%}%{$POWERLINE_COLOR_FG_WHITE%} %D{%b %d}%{$reset_color%}'
