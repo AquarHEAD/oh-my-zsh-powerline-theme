@@ -6,7 +6,7 @@ oh-my-zsh Powerline style Theme (with updates from AquarHEAD)
 Preview
 ------
 
-![Preview](http://share.aquarhead.me/zsh-powerline.png)
+![Imgur](http://i.imgur.com/HoCsZJb.png)
 
 Update
 ------
