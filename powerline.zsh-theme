@@ -13,7 +13,7 @@ REPO_DIRTY_COLOR=$FG[133]
 REPO_CLEAN_COLOR=$FG[118]
 REPO_PROMPT_INFO=$FG[012]
 
-ZSH_THEME_REPO_PROMPT_PREFIX=" \u2b60 "
+ZSH_THEME_REPO_PROMPT_PREFIX=" |o| "
 ZSH_THEME_REPO_PROMPT_SUFFIX="%{$REPO_PROMPT_INFO%}"
 ZSH_THEME_REPO_PROMPT_DIRTY=" %{$REPO_DIRTY_COLOR%}✘"
 ZSH_THEME_REPO_PROMPT_CLEAN=" %{$REPO_CLEAN_COLOR%}✔"
@@ -113,7 +113,7 @@ function _custom_username() {
 }
 
 PROMPT='
-'%{$bg[green]%}%{$fg[black]%}' $(_custom_username) '%{$reset_color%}%{$fg[green]%}%{$bg[blue]%}$'\u2b80'%{$reset_color%}%{$fg[white]%}%{$bg[blue]%}' '%~$'$(repo_prompt_info) '%{$reset_color%}%{$fg[blue]%}$'\u2b80 $(repo_prompt_status)\n%(?..%{$fg[red]%}%? ↵ )%{$fg_bold[white]%}$(_prompt_indicator) %{$reset_color%}'
+'%{$bg[green]%}%{$fg[black]%}' $(_custom_username) '%{$reset_color%}%{$fg[green]%}%{$bg[blue]%}%{$reset_color%}%{$fg[white]%}%{$bg[blue]%}' '%~$'$(repo_prompt_info) '%{$reset_color%}%{$fg[blue]%}$' $(repo_prompt_status)\n%(?..%{$fg[red]%}%? ↵ )%{$fg_bold[white]%}$(_prompt_indicator) %{$reset_color%}'
 
 # rbenv_prompt_info for rvm and rbenv support
 
@@ -122,4 +122,4 @@ function _venv_info() {
   echo "%{$PR_CYAN%}${VIRTUAL_ENV:t} | %{$PR_GREY%}$(rvm_prompt_info)"
 }
 
-RPROMPT=$'$(_venv_info)%{$POWERLINE_COLOR_FG_WHITE%}\u2b82%{$reset_color%}%{$POWERLINE_COLOR_BG_WHITE%} %{$POWERLINE_COLOR_FG_GRAY%}%D{%X}%  \u2b82%{$POWERLINE_COLOR_BG_GRAY%}%{$POWERLINE_COLOR_FG_WHITE%} %D{%b %d}%{$reset_color%}'
+RPROMPT=$'$(_venv_info)%{$POWERLINE_COLOR_FG_WHITE%}%{$reset_color%}%{$POWERLINE_COLOR_BG_WHITE%} %{$POWERLINE_COLOR_FG_GRAY%}%D{%X}%  %{$POWERLINE_COLOR_BG_GRAY%}%{$POWERLINE_COLOR_FG_WHITE%} %D{%b %d}%{$reset_color%}'
