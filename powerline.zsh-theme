@@ -1,5 +1,5 @@
 # FreeAgent puts the powerline style in zsh !
-# AquarHEAD updates to support mecurial
+# baked by AquarHEAD
 
 POWERLINE_COLOR_BG_GRAY=$BG[240]
 POWERLINE_COLOR_BG_LIGHT_GRAY=$BG[240]
@@ -80,30 +80,12 @@ function repo_prompt_status() {
     if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
       STATUS="$ZSH_THEME_REPO_PROMPT_UNMERGED$STATUS"
     fi
-  else
-    INDEX=$(hg status 2>/dev/null)
-    if $(echo "$INDEX" | grep '^? ' &> /dev/null); then
-      STATUS="$ZSH_THEME_REPO_PROMPT_UNTRACKED$STATUS"
-    fi
-    if $(echo "$INDEX" | grep '^A ' &> /dev/null); then
-      STATUS="$ZSH_THEME_REPO_PROMPT_ADDED$STATUS"
-    fi
-    if $(echo "$INDEX" | grep '^M ' &> /dev/null); then
-      STATUS="$ZSH_THEME_REPO_PROMPT_MODIFIED$STATUS"
-    fi
-    if $(echo "$INDEX" | grep '^R ' &> /dev/null); then
-      STATUS="$ZSH_THEME_REPO_PROMPT_DELETED$STATUS"
-    fi
-    if $(echo "$INDEX" | grep '^! ' &> /dev/null); then
-      STATUS="$ZSH_THEME_REPO_PROMPT_MISSING$STATUS"
-    fi
   fi
   echo $STATUS
 }
 
 function _prompt_indicator() {
   [ -n "$(git rev-parse --git-dir 2>/dev/null)" ] && echo -n '±' && return
-  [ -n "$(hg root 2>/dev/null)" ] && echo -n '☿' && return
   [ "$(uname)" = "Darwin" ] && echo '%(!.√.)' || echo '%(!.√.○)'
 }
 
@@ -118,8 +100,8 @@ PROMPT='
 # rbenv_prompt_info for rvm and rbenv support
 
 # virtualenv support
-function _venv_info() {
-  echo "%{$PR_CYAN%}${VIRTUAL_ENV:t} | %{$PR_GREY%}$(rvm_prompt_info)"
+function _rvm_info() {
+  echo "%{$PR_GREY%}$(rvm_prompt_info)"
 }
 
-RPROMPT=$'$(_venv_info)%{$POWERLINE_COLOR_FG_WHITE%}%{$reset_color%}%{$POWERLINE_COLOR_BG_WHITE%} %{$POWERLINE_COLOR_FG_GRAY%}%D{%X}%  %{$POWERLINE_COLOR_BG_GRAY%}%{$POWERLINE_COLOR_FG_WHITE%} %D{%b %d}%{$reset_color%}'
+RPROMPT=$'$(_rvm_info)%{$POWERLINE_COLOR_FG_WHITE%} %{$reset_color%}%{$POWERLINE_COLOR_BG_WHITE%} %{$POWERLINE_COLOR_FG_GRAY%}%D{%X} %{$reset_color%}'
