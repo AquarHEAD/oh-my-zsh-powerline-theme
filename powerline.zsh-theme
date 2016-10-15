@@ -1,14 +1,6 @@
 # FreeAgent puts the powerline style in zsh !
 # baked by AquarHEAD
 
-POWERLINE_COLOR_BG_GRAY=$BG[240]
-POWERLINE_COLOR_BG_LIGHT_GRAY=$BG[240]
-POWERLINE_COLOR_BG_WHITE=$BG[255]
-
-POWERLINE_COLOR_FG_GRAY=$FG[240]
-POWERLINE_COLOR_FG_LIGHT_GRAY=$FG[240]
-POWERLINE_COLOR_FG_WHITE=$FG[255]
-
 REPO_DIRTY_COLOR=$FG[133]
 REPO_CLEAN_COLOR=$FG[118]
 REPO_PROMPT_INFO=$FG[012]
@@ -97,11 +89,23 @@ function _custom_username() {
 PROMPT='
 '%{$bg[green]%}%{$fg[black]%}' $(_custom_username) '%{$reset_color%}%{$fg[green]%}%{$bg[blue]%}%{$reset_color%}%{$fg[white]%}%{$bg[blue]%}' '%~$'$(repo_prompt_info) '%{$reset_color%}%{$fg[blue]%}$' $(repo_prompt_status)\n%(?..%{$fg[red]%}%? ↵ )%{$fg_bold[white]%}$(_prompt_indicator) %{$reset_color%}'
 
-# rbenv_prompt_info for rvm and rbenv support
-
-# virtualenv support
-function _rvm_info() {
-  echo "%{$PR_GREY%}$(rvm_prompt_info)"
+# virtualenv support (for ESI development only)
+function _venv_info() {
+  echo "-ESI-"
 }
 
-RPROMPT=$'$(_rvm_info)%{$POWERLINE_COLOR_FG_WHITE%} %{$reset_color%}%{$POWERLINE_COLOR_BG_WHITE%} %{$POWERLINE_COLOR_FG_GRAY%}%D{%X} %{$reset_color%}'
+# rvm support
+function _rvm_info() {
+  echo "$(rvm_prompt_info)"
+}
+
+# combined environment info
+function _env_info() {
+  if [ $VIRTUAL_ENV ]; then
+    echo "$(_venv_info)"
+  else
+    echo "$(_rvm_info)"
+  fi
+}
+
+RPROMPT=$'%{$bg[white]%}%{$fg[black]%} $(_env_info) %{$reset_color%}'
