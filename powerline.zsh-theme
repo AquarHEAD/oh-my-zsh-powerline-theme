@@ -10,13 +10,13 @@ ZSH_THEME_REPO_PROMPT_SUFFIX="%{$REPO_PROMPT_INFO%}"
 ZSH_THEME_REPO_PROMPT_DIRTY=" %{$REPO_DIRTY_COLOR%}✘"
 ZSH_THEME_REPO_PROMPT_CLEAN=" %{$REPO_CLEAN_COLOR%}✔"
 
-ZSH_THEME_REPO_PROMPT_ADDED="%{$FG[082]%} [N]%{$reset_color%}"
-ZSH_THEME_REPO_PROMPT_MODIFIED="%{$FG[166]%} [M]%{$reset_color%}"
-ZSH_THEME_REPO_PROMPT_DELETED="%{$FG[160]%} [D]%{$reset_color%}"
-ZSH_THEME_REPO_PROMPT_MISSING="%{$FG[160]%} [D!]%{$reset_color%}"
-ZSH_THEME_REPO_PROMPT_RENAMED="%{$FG[220]%} [R]%{$reset_color%}"
-ZSH_THEME_REPO_PROMPT_UNMERGED="%{$FG[082]%} [UM]%{$reset_color%}"
-ZSH_THEME_REPO_PROMPT_UNTRACKED="%{$FG[190]%} [UT]%{$reset_color%}"
+ZSH_THEME_REPO_PROMPT_ADDED="%{$FG[082]%} N%{$reset_color%}"
+ZSH_THEME_REPO_PROMPT_MODIFIED="%{$FG[166]%} M%{$reset_color%}"
+ZSH_THEME_REPO_PROMPT_DELETED="%{$FG[160]%} D%{$reset_color%}"
+ZSH_THEME_REPO_PROMPT_MISSING="%{$FG[160]%} ??%{$reset_color%}"
+ZSH_THEME_REPO_PROMPT_RENAMED="%{$FG[220]%} R%{$reset_color%}"
+ZSH_THEME_REPO_PROMPT_UNMERGED="%{$FG[082]%} UM%{$reset_color%}"
+ZSH_THEME_REPO_PROMPT_UNTRACKED="%{$FG[190]%} UT%{$reset_color%}"
 
 autoload colors zsh/terminfo
 colors
@@ -28,14 +28,13 @@ done
 function repo_prompt_info() {
   local branch=""
   [ -n "$(git rev-parse --git-dir 2>/dev/null)" ] && branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  [ -n "$(hg root 2>/dev/null)" ] && branch=$(hg branch 2>/dev/null)
   if [ ! -z ${branch} ]; then
     echo "$ZSH_THEME_REPO_PROMPT_PREFIX${branch}$(repo_clean_dirty)$ZSH_THEME_REPO_PROMPT_SUFFIX"
   fi
 }
 
 function repo_clean_dirty() {
-  if [ -n "$(git status --porcelain 2> /dev/null)" ] || [ -n "$(hg status 2> /dev/null)" ]; then
+  if [ -n "$(git status --porcelain 2> /dev/null)" ]; then
     echo "$ZSH_THEME_REPO_PROMPT_DIRTY"
   else
     echo "$ZSH_THEME_REPO_PROMPT_CLEAN"
