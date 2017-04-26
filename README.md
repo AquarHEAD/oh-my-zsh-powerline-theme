@@ -6,14 +6,13 @@ oh-my-zsh Powerline style Theme (with updates from AquarHEAD)
 
 ![Imgur](http://i.imgur.com/BKhXxNM.png)
 
-## Update
+## Additional Features
 
 1. Change the prompt indicator: `±` for git, `` for normal dir on my mac
 
 2. Simplified git status indicator
 
 3. Customize username via `$ZSH_USERNAME`
-
 
 ## Set Up
 
