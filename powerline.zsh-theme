@@ -76,7 +76,7 @@ function repo_prompt_status() {
 }
 
 function _prompt_indicator() {
-  [ -n "$(git rev-parse --git-dir 2>/dev/null)" ] && echo -n '±' || echo -n '◊'
+  echo -n '◊'
 }
 
 function _custom_username() {
