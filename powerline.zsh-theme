@@ -89,12 +89,20 @@ function _venv_info() {
   echo "-ESI-"
 }
 
+function _rvm_info() {
+  if ! type "rvm-prompt" > /dev/null; then
+    echo ""
+  else
+    echo "$(rvm-prompt)"
+  fi
+}
+
 # combined environment info
 function _env_info() {
   if [ $VIRTUAL_ENV ]; then
     echo "$(_venv_info)"
   else
-    echo "$(rvm-prompt)"
+    echo "$(_rvm_info)"
   fi
 }
 
