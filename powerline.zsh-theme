@@ -106,7 +106,7 @@ function _env_info() {
   fi
 }
 
-PROMPT='%(?..%{$fg[red]%}↪︎  %? ↩︎)
+PROMPT='%(?..%{$fg[red]%}⨕ %?)
 '%{$bg[green]%}%{$fg[black]%}' $(_custom_username) '%{$reset_color%}%{$bg[white]%}%{$fg[black]%}' $(_env_info) '%{$reset_color%}%{$fg[green]%}%{$bg[blue]%}%{$reset_color%}%{$fg[white]%}%{$bg[blue]%}' '%~$'$(repo_prompt_info) '%{$reset_color%}%{$fg[blue]%}$' $(repo_prompt_status)\n%{$fg_bold[white]%}$(_prompt_indicator) %{$reset_color%}'
 
 RPROMPT=''
