@@ -90,10 +90,10 @@ function _venv_info() {
 }
 
 function _rvm_info() {
-  if ! type "rvm-prompt" > /dev/null; then
-    echo ""
-  else
+  if type "rvm-prompt" > /dev/null; then
     echo "$(rvm-prompt)"
+  else
+    echo ""
   fi
 }
 
