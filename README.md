@@ -1,26 +1,24 @@
 # oh-my-zsh-powerline-theme
 
-oh-my-zsh Powerline style Theme (with updates from AquarHEAD)
+oh-my-zsh Powerline style Theme (heavily modified by aquarhead)
 
 ## Preview
 
-![Imgur](http://i.imgur.com/BKhXxNM.png)
+with [Fira Code](https://github.com/tonsky/FiraCode)
 
-## Additional Features
+![Imgur](http://i.imgur.com/tJXVKmY.png)
 
-1. Change the prompt indicator: `±` for git, `` for normal dir on my mac
+## Modifications
 
-2. Simplified git status indicator
+1. Changed prompt indicator to `◊`, inspired by [Pollen](http://docs.racket-lang.org/pollen/)
+2. Simplified git status indicators
+3. Customizable username via `$ZSH_USERNAME`
 
-3. Customize username via `$ZSH_USERNAME`
+## Setup
 
-## Set Up
-
-1. Clone the repository.
-
-2. Create symlink of `powerline.zsh-theme` in `.oh-my-zsh/themes/`.
-
-2. Configure the theme in your `.zshrc` file :
+1. Clone the repository
+2. Create symlink of `powerline.zsh-theme` in `.oh-my-zsh/themes/`
+3. Use it in your `.zshrc` file:
 
 ```
 ZSH_THEME="powerline"
@@ -33,8 +31,3 @@ To disable virtualenv modifying `PROMPT` upon activation, set the following env 
 ```
 export VIRTUAL_ENV_DISABLE_PROMPT="true"
 ```
-
-## Requirements
-
-* Vim Powerline patched font : See [Powerline for vim](https://github.com/Lokaltog/vim-powerline/tree/develop/fontpatcher) for more info.
-* Z shell (zsh) : See [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) for more info.
