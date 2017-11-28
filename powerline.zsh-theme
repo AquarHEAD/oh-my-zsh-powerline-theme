@@ -84,9 +84,9 @@ function _custom_username() {
   echo %n
 }
 
-# virtualenv support (for ESI development only)
+# Pipenv support
 function _venv_info() {
-  echo "-ESI-"
+  echo "[ Pipenv ]"
 }
 
 function _rvm_info() {
