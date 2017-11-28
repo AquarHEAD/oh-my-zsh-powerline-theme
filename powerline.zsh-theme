@@ -91,7 +91,7 @@ function _venv_info() {
 
 function _rvm_info() {
   if type "rvm-prompt" > /dev/null; then
-    echo "$(rvm-prompt)"
+    echo "💎  $(rvm-prompt)"
   else
     echo ""
   fi
