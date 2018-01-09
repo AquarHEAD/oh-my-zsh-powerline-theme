@@ -86,7 +86,7 @@ function _custom_username() {
 
 # Pipenv support
 function _venv_info() {
-  echo "🐍  Pipenv "
+  echo "🐍  Pipenv[$(basename $VIRTUAL_ENV)]"
 }
 
 function _rvm_info() {
