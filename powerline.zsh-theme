@@ -97,10 +97,21 @@ function _rvm_info() {
   fi
 }
 
+function _kerl_info() {
+  KERL_PROMPT=$(kerl prompt)
+  if [[ $KERL_PROMPT != "" ]]; then
+    echo "☎️  ${KERL_PROMPT[3, -2]}"
+  else
+    echo ""
+  fi
+}
+
 # combined environment info
 function _env_info() {
   if [ $VIRTUAL_ENV ]; then
     echo "$(_venv_info)"
+  elif [[ $(kerl prompt) != "" ]]; then
+    echo "$(_kerl_info)"
   else
     echo "$(_rvm_info)"
   fi
