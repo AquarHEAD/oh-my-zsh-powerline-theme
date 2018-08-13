@@ -86,12 +86,12 @@ function _custom_username() {
 
 # Pipenv support
 function _venv_info() {
-  echo "🐍  Pipenv[$(basename $VIRTUAL_ENV)]"
+  echo " Pipenv[$(basename $VIRTUAL_ENV)]"
 }
 
 function _rvm_info() {
   if type "rvm-prompt" > /dev/null; then
-    echo "💎  $(rvm-prompt)"
+    echo " $(rvm-prompt)"
   else
     echo ""
   fi
@@ -100,7 +100,7 @@ function _rvm_info() {
 function _kerl_info() {
   KERL_PROMPT=$(kerl prompt)
   if [[ $KERL_PROMPT != "" ]]; then
-    echo "☎️  ${KERL_PROMPT[3, -2]}"
+    echo " ${KERL_PROMPT[3, -2]}"
   else
     echo ""
   fi
